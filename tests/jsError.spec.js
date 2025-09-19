@@ -1,11 +1,10 @@
 import {test, expect} from '@playwright/test';
 import JsError from "../pages/jsError.page";
-import path from 'path';
-import fs from 'fs';
+import {navigate} from '../utils/navigate.utils';
 
 test ("JavaScript onload event error", async({page}) =>{
     const jsErrorPage = new JsError(page); 
-    await jsErrorPage.navigate();
+    await navigate(page, process.env.HOMEPAGE_URL, jsErrorPage.PAGE_LINK, jsErrorPage.HEADER);
     await expect(jsErrorPage.ERROR).toHaveText(jsErrorPage.ERROR_MESSAGE);
 })
 
