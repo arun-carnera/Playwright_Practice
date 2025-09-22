@@ -12,5 +12,4 @@ test('Check Boxes Test', async ({ page }) => {
     await expect(checkBoxesPage.CHECK_BOX2).toBeChecked();
     await checkBoxesPage.CHECK_BOX2.uncheck();
     await expect(checkBoxesPage.CHECK_BOX2).not.toBeChecked();
-    await checkBoxesPage.waitForPageLoad();
 });
