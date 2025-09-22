@@ -3,7 +3,6 @@ import Frames from '../pages/frames.page';
 
 test('Nested Frames Test', async ({ page }) => {
     const framesPage = new Frames(page);
-    await page.pause();
     await framesPage.navigate();
     await framesPage.NESTED_FRAMES_LINK.click();
     await expect(framesPage.MIDDLE_FRAME).toBeVisible();
