@@ -5,7 +5,6 @@ export default class AbTesting {
         this.page = page;
         this.PAGE_LINK = page.getByText('A/B Testing');
         this.PAGE_HEADER = page.locator('h3');
-        // this.CLICK_HERE_LINK = page.getByText('click here');
     }
 
     async navigate() {

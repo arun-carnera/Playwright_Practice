@@ -1,14 +1,9 @@
 import { test, expect } from '@playwright/test';
 import BasicAuth from '../pages/basicAuth.page.js';
 
-test("Basic Auth test", async ({ page }) => {
+test("Basic Auth Successful Test", async ({ page }) => {
     const basicAuthPage = new BasicAuth(page);
     await basicAuthPage.navigate();
-    await page.on('dialog', async dialog => {
-        await expect(dialog.type()).toBe('prompt'); 
-        console.log( dialog.message());
-        await expect(dialog.message()).toBe('Sign in');
-        await page.waitForTimeout(2000);
-    });
-    await basicAuthPage.PAGE_LINK.click();
+    await expect(basicAuthPage.PAGE_HEADER).toBeVisible();
+    await expect(basicAuthPage.SUCCESS_TEXT).toBeVisible();
 });

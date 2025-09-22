@@ -10,5 +10,5 @@ test('Broken Images Test', async ({ page }) => {
   await brokenImagesPage.PAGE_LINK.click();
   await brokenImagesPage.waitForPageLoad();
   console.log('Broken Images:', brokenimages);
-  await expect(brokenimages.length).toBeGreaterThan(0); // Expect at least one broken image
+  await expect(brokenimages.length).toBeGreaterThan(0);
 });

@@ -19,7 +19,6 @@ test("File Upload Test without using Playwright inline utility", async ({ page }
     const fileUploadPage = new FileUpload(page);
     await fileUploadPage.navigate();
     await expect(fileUploadPage.HEADER).toBeVisible();
-    await page.getByRole('link', { name: 'File Upload' }).click();
     await page.getByRole('button', { name: 'Choose File' }).click();
     await page.getByRole('button', { name: 'Choose File' }).setInputFiles(path.join(__dirname,'tmp9cwnga1s.txt'));
     await page.getByRole('button', { name: 'Upload' }).click();

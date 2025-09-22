@@ -3,9 +3,7 @@ export default class FileDownload {
         this.page = page;
         this.PAGE_LINK = page.getByRole('link', { name: 'File Download', exact: true });
         this.HEADER = page.locator('h3');
-        this.FILE1 = page.getByRole('link', { name: 'tmp9cwnga1s.txt', exact: true });
-        this.FILE2 = page.getByRole('link', { name: 'webdriverIO.png', exact: true });
-        this.FILE3 = page.getByRole('link', { name: 'Quote1.docx', exact: true });
+        this.FILE1 = page.getByRole('link', { name: 'some-file.txt', exact: true });
     }
 
     async navigate() {

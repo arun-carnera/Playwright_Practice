@@ -8,7 +8,7 @@ test("File Download Test", async({ page }) => {
     await fileDownloadPage.navigate();
     await expect(fileDownloadPage.HEADER).toBeVisible();
     const downloadPromise = page.waitForEvent('download');
-    await fileDownloadPage.FILE2.click();
+    await fileDownloadPage.FILE1.click();
     const download = await downloadPromise;
     const suggestedFileName = download.suggestedFilename();
     console.log("suggestedFileName:", suggestedFileName);
