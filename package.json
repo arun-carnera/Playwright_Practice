@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test" : "npx playwright test",
-    "test:headed" : "npx playwright test --headed",
-    "test:smoke" : "npx playwright test '@smoke' --headed",
-    "test:regression" : "npx playwright test '@regression' --headed"
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:smoke": "npx playwright test '@smoke' --headed",
+    "test:regression": "npx playwright test '@regression' --headed"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +15,8 @@
   "devDependencies": {
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.3.0"
+  },
+  "dependencies": {
+    "tesseract.js": "^5.0.1"
   }
 }
