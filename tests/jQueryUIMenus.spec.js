@@ -5,7 +5,6 @@ import JQueryUIMenus from '../pages/jQueryUIMenus.page';
 test('JQuery UI Menus', async ({page})=>{
     const jQueryUIMenus = new JQueryUIMenus(page);
     await jQueryUIMenus.navigate();
-    //await navigate(page, process.env.HOMEPAGE_URL, jQueryUIMenus.PAGE_LINK, jQueryUIMenus.HEADER);
     await jQueryUIMenus.downloadFile(jQueryUIMenus.PDF);
     await jQueryUIMenus.downloadFile(jQueryUIMenus.CSV);
     await jQueryUIMenus.downloadFile(jQueryUIMenus.EXCEL);
