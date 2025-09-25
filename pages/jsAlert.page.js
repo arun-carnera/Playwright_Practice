@@ -5,7 +5,6 @@ export default class JSAlert {
         this.HEADER = page.getByRole('heading', { name: 'JavaScript Alerts' })
         this.CLICKFORJSALERT = page.getByText("Click for JS Alert");
         this.RESULT = page.locator('#result');
-
         this.CLICKFORJSCONFIRM = page.getByText("Click for JS Confirm");
         this.CLICKFORJSPROMPT = page.getByText("Click for JS Prompt");
     }
