@@ -6,6 +6,7 @@ import path from 'path';
 
 test("Input", async({page}) =>{
     const input = new Input(page);
+    //const excelDataArr = getExcelSheetData((path.resolve(__dirname, '../testdata/playwright_excel.xlsx')), 'dev');
     const excelDataArr = getExcelSheetData((path.join(__dirname, '../testdata/playwright_excel.xlsx')), 'dev');
     console.log(excelDataArr);
     await page.goto(excelDataArr[0].URL);

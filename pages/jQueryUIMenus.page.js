@@ -1,6 +1,7 @@
 import { expect } from '@playwright/test';
 import path from 'path';
 import fs from 'fs';
+import users from '../fixtures/users.json' assert { type : 'json' };
 
 export default class JQueryUIMenus {
     constructor(page) {
@@ -16,6 +17,11 @@ export default class JQueryUIMenus {
         this.MENU = page.getByText('Menu');
     }
 
+    async navigate() {
+        await this.page.goto(users.URL.validURL);
+        await this.PAGE_LINK.click();
+    }
+
     async downloadFile(fileButtonLocator) {
         await this.ENABLE.hover();
         await this.page.waitForTimeout(300);
@@ -26,7 +32,7 @@ export default class JQueryUIMenus {
         const download = await downloadPromise;
         const suggestedFileName = download.suggestedFilename();
         console.log("suggestedFileName", suggestedFileName);
-        const downloadPath = path.join(__dirname, 'downloads', suggestedFileName);
+        const downloadPath = path.join(__dirname, '../downloads', suggestedFileName);
         console.log("downloadPath", downloadPath);
         await download.saveAs(downloadPath);
         await expect(fs.existsSync(downloadPath)).toBeTruthy();
