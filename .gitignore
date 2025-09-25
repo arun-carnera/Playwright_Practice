@@ -9,4 +9,5 @@ node_modules/
 /uploads
 /eng.traineddata
 /allure-report
-/allure-results
+/allure-report/*
+/allure-results/*
