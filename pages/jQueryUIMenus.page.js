@@ -1,6 +1,7 @@
 import { expect } from '@playwright/test';
 import path from 'path';
 import fs from 'fs';
+import users from '../fixtures/users.json' assert { type : 'json' };
 
 export default class JQueryUIMenus {
     constructor(page) {
@@ -14,6 +15,11 @@ export default class JQueryUIMenus {
         this.EXCEL = page.locator('#ui-id-7 > a');
         this.BACK_TO_JQUERY_UI = page.locator('//*[@id="ui-id-8"]/a');
         this.MENU = page.getByText('Menu');
+    }
+
+    async navigate() {
+        await this.page.goto(users.URL.validURL);
+        await this.PAGE_LINK.click();
     }
 
     async downloadFile(fileButtonLocator) {
