@@ -10,11 +10,6 @@ export default class JSAlert {
         this.CLICKFORJSPROMPT = page.getByText("Click for JS Prompt");
     }
 
-    async navigate(){
-        await this.page.goto("https://the-internet.herokuapp.com");
-        await this.PAGE_LINK.click();
-    }
-
     async triggerAlertAndAccept(buttonLocator){
         let alertMessage = '';
         this.page.once('dialog', async dialog =>{

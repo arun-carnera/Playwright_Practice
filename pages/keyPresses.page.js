@@ -7,9 +7,4 @@ export default class KEYPresses{
         this.SEARCHBOX = page.locator('#target');
         this.RESULT = page.locator('#result');
     }
-
-    async navigate(){
-        await this.page.goto("https://the-internet.herokuapp.com");
-        await this.PAGE_LINK.click();
-    }
 }

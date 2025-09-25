@@ -1,16 +1,9 @@
 import {test, expect} from '@playwright/test';
+import NotificationMessages from '../pages/notificationMessages.page';
+import { navigate } from '../utils/navigate.utils';
 
-test.describe('Validate the Notification Messages', ()=>{
-    test.beforeEach('login', async({page})=>{
-        await page.goto("https://the-internet.herokuapp.com");
-        await page.getByRole('link', {name: 'Notification Messages'}).click();
-        await expect(page.locator('h3')).toHaveText('Notification Message');
-    })
-
-    test('validate the page', async({page}) =>{
-        //await page.toContainText('Action unsuccesful, please try again');
-        // await page.locator('//*[@id="flash"]').click();
-        const flash = page.locator('#flash');
-        await expect(flash).toContainText('Action');
-    })
+test('Validate the Notification Messages', async({page})=>{
+    const notificationMessages = new NotificationMessages(page);
+    await navigate(page, process.env.HOMEPAGE_URL, notificationMessages.PAGE_LINK, notificationMessages.HEADER);
+    await expect(notificationMessages.FLASH).toContainText('Action');
 });
