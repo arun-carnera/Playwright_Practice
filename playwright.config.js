@@ -29,42 +29,54 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: 
+  [
+        ['html'], // You can keep other reporters like 'list' or 'html'
+        ['allure-playwright', {
+          resultsDir: 'allure-results', // Directory where Allure results will be stored
+          // Other options can be configured here, e.g., attachments, videos
+        }],
+      ],
+  // 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
+    permissions: ['geolocation'],
     baseURL: process.env.HOMEPAGE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    screenshot:'only-on-failure',
+    video:'retain-on-failure'
   },
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
+
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 8'] },
+    },
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 15'] },
+    },
 
     /* Test against branded browsers. */
     // {

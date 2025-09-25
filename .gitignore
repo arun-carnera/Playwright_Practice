@@ -5,5 +5,12 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/downloads
+/uploads
+/eng.traineddata
+/allure-report
+/allure-report/*
+/allure-results/*
 /Playwright/downloads
 Playwright/tests/downloads
+

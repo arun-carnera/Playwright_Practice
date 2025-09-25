@@ -4,17 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
-    "headed": "npx playwright test --headed",
+
+    "test:headed": "cross-env npx playwright test --headed",
+    "test:focus": "cross-env npx playwright test --headed --project=chrome --workers=1",
+    "test:smoke": "cross-env npx playwright test '@smoke' --headed",
+    "test:regression": "cross-env npx playwright test '@regression' --headed",
+    "test:series": "cross-env npx playwright test --workers=1 --headed",
+    "test:failed": "cross-env npx playwright test --last-failed --headed",
+    "test:pw-report":"cross-env npx playwright show-report",
+    "test:allure-report" : "cross-env npx allure generate allure-results --clean && npx allure open",
     "integration": "npx playwright test '@integration' --headed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.55.1",
     "@types/node": "^24.3.0",
-    "dotenv": "^17.2.2"
+    "allure-commandline": "^2.34.1",
+    "cross-env": "^10.0.0",
+    "allure-playwright": "^3.4.1",
+    "tesseract.js": "^5.0.1",
+    "dotenv": "^17.2.2",
   },
   "dependencies": {
     "xlsx": "^0.18.5"
