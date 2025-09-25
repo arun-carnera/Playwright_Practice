@@ -12,7 +12,7 @@ test("File Download Test", async({ page }) => {
     const download = await downloadPromise;
     const suggestedFileName = download.suggestedFilename();
     console.log("suggestedFileName:", suggestedFileName);
-    const downloadPath = path.join(__dirname, 'downloads', suggestedFileName);
+    const downloadPath = path.join(__dirname, '../downloads', suggestedFileName);
     console.log("downloadPath:", downloadPath);
     await download.saveAs(downloadPath);
     await expect(fs.existsSync(downloadPath)).toBeTruthy();

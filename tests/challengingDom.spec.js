@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import ChallengingDom from '../pages/challengingDOM.page';
+import ChallengingDom from '../pages/challengingDom.page';
 
 test("Challenging DOM Test", async ({page}) => {
     const challengingDomPage = new ChallengingDom(page);
@@ -29,69 +29,53 @@ test("Challenging DOM Test", async ({page}) => {
     })
 
     await test.step('Buttons Text Test', async()=>{
-        const elementText1 = await challengingDomPage.ELEMENT(1).textContent();
-        console.log(elementText1);
-        await challengingDomPage.ELEMENT(1).click();
-        await page.waitForTimeout(1000);
-        const newElementText1 = await challengingDomPage.ELEMENT(1).textContent();
-        console.log(newElementText1);
-        await page.waitForTimeout(1000);
-        await expect(newElementText1 === elementText1).toBeFalsy();
-
-        const elementText2 = await challengingDomPage.ELEMENT(2).textContent();
-        console.log(elementText2);
-        await challengingDomPage.ELEMENT(2).click();
-        await page.waitForTimeout(500);
-        const newElementText2 = await challengingDomPage.ELEMENT(2).textContent();
-        console.log(newElementText2);
-        await page.waitForTimeout(500);
-        await expect(newElementText2 === elementText2).toBeFalsy();
-
-        const elementText3 = await challengingDomPage.ELEMENT(3).textContent();
-        console.log(elementText3);
-        await challengingDomPage.ELEMENT(3).click();
-        await page.waitForTimeout(500);
-        const newElementText3 = await challengingDomPage.ELEMENT(3).textContent();
-        console.log(newElementText3);
-        await page.waitForTimeout(1000);
-        await expect(newElementText3 === elementText3).toBeFalsy();
+        let elementText = [];
+        let newElementText = [];
+        for (let i = 1; i < 4; i++) {
+            await elementText.push(challengingDomPage.ELEMENT(i).textContent());
+            console.log(elementText[i-1]);
+            await challengingDomPage.ELEMENT(i).click();
+            await page.waitForTimeout(1000);
+            await newElementText.push(challengingDomPage.ELEMENT(i).textContent());
+            console.log(newElementText[i-1]);
+            await page.waitForLoadState('load');
+            await page.waitForTimeout(1000);
+            await expect(newElementText[1-i] === elementText[i-1]).toBeFalsy();
+        }
     })
 
     await test.step("Canvas Text Test", async () => {
         let textArray = [];
-        for (let i = 0; i<textArray.length;i++){
-            
-        }
         let text = await challengingDomPage.canvasText();
         await textArray.push(text);
         console.log('Extracted text from canvas before any click:', textArray[0]);
-        await challengingDomPage.ELEMENT(1).click();
-        await page.waitForTimeout(1000);
-        text = await challengingDomPage.canvasText();
-        await textArray.push(text);
-        console.log('Extracted text from canvas after first click:', textArray[1]);
-        await challengingDomPage.ELEMENT(2).click();
-        await page.waitForTimeout(1000);
-        text = await challengingDomPage.canvasText();
-        await textArray.push(text);
-        console.log('Extracted text from canvas after second click :', textArray[2]);
-        await challengingDomPage.ELEMENT(3).click();
-        await page.waitForTimeout(1000);
-        text = await challengingDomPage.canvasText();
-        await textArray.push(text);
-        console.log('Extracted text from canvas after third click :', textArray[3]);
-        expect(textArray[0] === textArray[1]).toBeFalsy();
-        expect(textArray[0] === textArray[2]).toBeFalsy();
-        expect(textArray[0] === textArray[3]).toBeFalsy();
-        expect(textArray[1] === textArray[2]).toBeFalsy();
-        expect(textArray[1] === textArray[3]).toBeFalsy();
-        expect(textArray[2] === textArray[3]).toBeFalsy();
+        for (let i = 1; i < 4; i++) {
+            await challengingDomPage.ELEMENT(i).click();
+            await page.waitForTimeout(1000);
+            text = await challengingDomPage.canvasText();
+            await textArray.push(text);
+            console.log('Extracted text from canvas after first click:', textArray[i]);
+        }
+        for (let i = 0; i < textArray.length; i++) {
+            for (let j = i+1; j < textArray.length; j++) {
+                await expect(textArray[i] === textArray[j]).toBeFalsy();
+            }   
+        }
     })
 
     await test.step("Table Test", async () => {
         const tableColumn = ['Lorem','Ipsum','Dolor','Sit','Amet','Diceret','Action'];
-        for(let i = 0; i<tableColumn.length; i++){
-            await expect(challengingDomPage.TABLE_COLUMN(i+1)).toHaveText(tableColumn[i]);    
+        const tableRow = ['Iuvaret','Apeirian','Adipisci','Definiebas','Consequuntur','Phaedrum']
+        for(let i=0; i<11; i++){
+            for(let j=0; j<tableColumn.length; j++){
+                await expect(challengingDomPage.TABLE_COLUMN(j+1)).toHaveText(tableColumn[j]);
+                if(i>0){
+                    if(j>=5){
+                        continue;
+                    }
+                    await expect(challengingDomPage.TABLE_CELL(i,j+1)).toHaveText(`${tableRow[j]}${i-1}`);
+                }
+            }
         }
     })
 })
