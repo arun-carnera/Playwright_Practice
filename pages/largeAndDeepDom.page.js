@@ -6,9 +6,4 @@ export default class LargeAndDeepDOM{
         this.NOSIBLING = page.locator('//*[@id="content"]/div/h4[1]');
         this.SIBLING = page.locator('//*[@id="content"]/div/h4[2]');
     }
-
-    async naviagte(){
-        await this.page.goto("https://the-internet.herokuapp.com");
-        await this.PAGE_LINK.click();
-    }
 }

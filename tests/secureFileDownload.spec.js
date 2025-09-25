@@ -1,13 +1,24 @@
 import {test, expect} from '@playwright/test';
+import SecureFileDownload from '../pages/secureFileDownload.page';
+import path from 'path';
+import fs from 'fs';
+import { navigatewithcredential } from '../utils/navigate.utils';
 
-test.describe('Validate the Secure File Download', () =>{
-    test.beforeEach('login', async({page})=>{
-        await page.goto("https://the-internet.herokuapp.com");
-        await page.toBeRole('link', 'Secure File Download').click();
-        await expect()
-    })
+test('Validate the Secure File Download', async({page}) =>{
 
-    test('should validate the login page', async({page})=>{
+    const secureFileDownload = new SecureFileDownload(page);
+    await navigatewithcredential(page, process.env.SECUREFILE_URL, secureFileDownload.HEADER);
+    
+    const downloadPromise = page.waitForEvent('download');
+    await secureFileDownload.AsyncCallBack.click();
+    const download = await downloadPromise;
+    const suggestedFileName = download.suggestedFilename();
+    console.log("suggestedFileName", suggestedFileName);
+    const downloadPath = path.join(__dirname, 'downloads', suggestedFileName);
+    console.log("downloadPath", downloadPath);
+    await download.saveAs(downloadPath);
+    await expect(fs.existsSync(downloadPath)).toBeTruthy();
+    const fileStats = fs.statSync(downloadPath);
+    await expect(fileStats.size).toBeGreaterThan(0);
 
-    })
-})
+});

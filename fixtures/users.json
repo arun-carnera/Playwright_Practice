@@ -1,0 +1,13 @@
+{
+    "validUser":{
+            "username": "valideUsername",
+            "password": "validePassword"
+    },
+    "invaldUser":{
+        "username": "invalidUserName",
+        "passwrod": "invalidPassword"
+    },
+    "URL":{
+        "validURL": "https://the-internet.herokuapp.com"
+    }
+}
