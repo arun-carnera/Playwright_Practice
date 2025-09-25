@@ -7,3 +7,10 @@ node_modules/
 /playwright/.cache/
 /Playwright/downloads
 Playwright/tests/downloads
+/allure-report
+/allure-results
+/downloads
+/downloads/*
+/uploads
+/eng.traineddata
+/package-lock.json
