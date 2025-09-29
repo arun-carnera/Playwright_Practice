@@ -11,6 +11,5 @@ Playwright/tests/downloads
 /allure-results
 /downloads
 /downloads/*
-/uploads
 /eng.traineddata
 /package-lock.json
