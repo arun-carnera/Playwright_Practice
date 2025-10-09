@@ -1,6 +1,5 @@
 import {test, expect} from '@playwright/test';
 import JQueryUIMenus from '../pages/jQueryUIMenus.page';
-//import {navigate} from '../utils/navigate.utils';
 
 test('JQuery UI Menus', async ({page})=>{
     const jQueryUIMenus = new JQueryUIMenus(page);
