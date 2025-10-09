@@ -5,7 +5,10 @@ test('Check Boxes Test', async ({ page }) => {
     const checkBoxesPage = new CheckBoxes(page);
     await checkBoxesPage.navigate();
     await checkBoxesPage.PAGE_LINK.click();
-    await checkBoxesPage.waitForPageLoad();
+    if (!checkBoxesPage.CHECK_BOX1.isVisible() || !checkBoxesPage.CHECK_BOX2.isVisible())
+        {
+            await this.page.waitForLoadState('load');
+        }
     await expect(checkBoxesPage.CHECK_BOX1).not.toBeChecked();
     await checkBoxesPage.CHECK_BOX1.check();
     await expect(checkBoxesPage.CHECK_BOX1).toBeChecked();

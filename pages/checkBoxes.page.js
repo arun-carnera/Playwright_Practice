@@ -10,9 +10,4 @@ export default class CheckBoxes {
         await this.page.goto("https://the-internet.herokuapp.com/");
         await this.page.waitForLoadState('load');
     }
-
-    async waitForPageLoad() {
-        await this.page.waitForLoadState('load');
-        await this.page.waitForTimeout(2000);
-    }
 }

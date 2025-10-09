@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env npx playwright test",
-    "headed": "cross-env npx playwright test --headed",
-    "integration": "cross-env npx playwright test '@integration' --headed",
+    "test:headed": "cross-env npx playwright test --headed",
+    "test:integration": "cross-env npx playwright test '@integration' --headed",
     "test:smoke": "cross-env npx playwright test '@smoke' --headed",
     "test:regression": "cross-env npx playwright test '@regression' --headed",
-    "test:chrome": "cross-env npx playwright test --headed --project=chromium --wrokers=1",
+    "test:chromium": "cross-env npx playwright test --headed --project=chromium --wrokers=1",
     "test:failed": "cross-env npx playwright test --headed --last-failed",
-    "test:": "cross-env npx playwright test --headed",
     "test:pw-report":"cross-env npx playwright show-report",
     "test:allure-report" : "cross-env npx allure generate allure-results --clean && npx allure open"
   },

@@ -24,8 +24,10 @@ export default class JQueryUIMenus {
 
     async downloadFile(fileButtonLocator) {
         await this.ENABLE.hover();
-        await this.page.waitForTimeout(300);
-        await this.DOWNLOAD.waitFor({ state: 'visible' });
+        if(!this.DOWNLOAD.isVisible())
+        {
+            await this.page.waitForTimeout(500);
+        }
         await this.DOWNLOAD.hover();
         const downloadPromise = this.page.waitForEvent('download');
         await fileButtonLocator.click();
